@@ -40,5 +40,6 @@ public class CampoTextoBoton extends HBox {
     @FXML
     protected void doSomething() {
         System.out.println("The button was clicked!");
+        
     }
 }
