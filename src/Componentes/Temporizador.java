@@ -28,6 +28,7 @@ public class Temporizador extends HBox {
         typeLabel = new Label();
         typeLabel.setText(" segundos");
 
+       
         setTime(seconds);
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("TemporizadorFXML.fxml"));
         fxmlLoader.setRoot(this);
