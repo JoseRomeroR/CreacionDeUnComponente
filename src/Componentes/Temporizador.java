@@ -41,7 +41,7 @@ public class Temporizador extends HBox {
         this.getChildren().addAll(timeLabel);
         this.getChildren().addAll(typeLabel);
         // root.getChildren().add(layout);
-        doTime();
+        //doTime();
         try {
             fxmlLoader.load();
         } catch (IOException exception) {
@@ -49,7 +49,9 @@ public class Temporizador extends HBox {
         }
     }
 
-    private void doTime() {
+    
+    // metodo para empezar la cuenta atras ( si no queremos esto descomentamos en el constructor doTime y lo volvemos privado este metodo para mas security)
+    public void doTime() {
         Timeline time = new Timeline();
         time.setCycleCount(Timeline.INDEFINITE);
 
