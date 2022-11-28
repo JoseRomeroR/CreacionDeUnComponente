@@ -62,10 +62,8 @@ public class Temporizador extends HBox {
                 seconds--;
                 timeLabel.setText(String.valueOf(seconds));
                 if (seconds <= 0) {
-                    time.stop();
-                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                    alert.setHeaderText("Contador reseteado");
-                    alert.show();
+                    time.stop();    
+                    
                 }
 
             }
@@ -76,7 +74,20 @@ public class Temporizador extends HBox {
 
     }
 
+    public int getTime(){
+        return this.seconds;
+    }
+    
     public void setTime(int seconds) {
         this.seconds = seconds;
+    }
+    
+    public void alertTime(){
+          if (this.seconds== 0) {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setHeaderText("Contador reseteado");
+            alert.show();
+
+        }
     }
 }
