@@ -1,64 +1,66 @@
 package Componentes;
 
+import java.io.IOException;
 import javafx.animation.KeyFrame;
-import javafx.application.Application;
-
-import javafx.scene.Group;
-import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
-import javafx.stage.Stage;
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.scene.Scene;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Label;
 import javafx.util.Duration;
 
-public class Temporizador extends Application {
+public class Temporizador extends HBox {
 
-    private final int starTime = 10;
-    private int seconds = starTime;
-    private Label label;
+    //private final int starTime = 10;
+    private int seconds;
+    private Label timeLabel;
+    private Label nameLabel;
+    private Label typeLabel;
 
-    public void start(Stage stage) throws Exception {
+    public Temporizador(int seconds) {
+        nameLabel = new Label();
+        nameLabel.setText("Contador");
+        timeLabel = new Label();
+        typeLabel = new Label();
+        typeLabel.setText(" segundos");
 
-        Group root = new Group();
-        label = new Label();
-        label.setTextFill(Color.WHITE);
-        label.setFont(Font.font(20));
-        HBox layout = new HBox(5);
-        layout.getChildren().addAll(label);
-        root.getChildren().add(layout);
-        
+        setTime(seconds);
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("TemporizadorFXML.fxml"));
+        fxmlLoader.setRoot(this);
+        fxmlLoader.setController(this);
+
+        timeLabel.setTextFill(Color.BLACK);
+        timeLabel.setFont(Font.font(20));
+        //HBox layout = new HBox(5);
+        this.getChildren().addAll(nameLabel);
+        this.getChildren().addAll(timeLabel);
+        this.getChildren().addAll(typeLabel);
+        // root.getChildren().add(layout);
         doTime();
-
-        
-        stage.setScene( new Scene( root,400,100, Color.BLACK));
-        stage.setTitle("Contador");
-        stage.show();
-
-    }
-
-    public static void main(String[] args) {
-        launch(args);
+        try {
+            fxmlLoader.load();
+        } catch (IOException exception) {
+            throw new RuntimeException(exception);
+        }
     }
 
     private void doTime() {
         Timeline time = new Timeline();
         time.setCycleCount(Timeline.INDEFINITE);
-        
-        if (time!=null) {
+
+        if (time != null) {
             time.stop();
-            
         }
         KeyFrame frame = new KeyFrame(Duration.seconds(1), new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
                 seconds--;
-                label.setText("Contador: "+ String.valueOf(seconds) );
-                if (seconds<= 0) {
+                timeLabel.setText(String.valueOf(seconds));
+                if (seconds <= 0) {
                     time.stop();
                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
                     alert.setHeaderText("Contador reseteado");
@@ -73,22 +75,7 @@ public class Temporizador extends Application {
 
     }
 
-//    public Temporizador() {
-//        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("TemporizadorFXML.fxml"));
-//        fxmlLoader.setRoot(this);
-//        fxmlLoader.setController(this);
-//
-//        try {
-//            fxmlLoader.load();
-//        } catch (IOException exception) {
-//            throw new RuntimeException(exception);
-//        }
-//    }
-//
-//    @FXML
-//    private void doTime() {
-//        
-//        //TimeLine time = new 
-//
-//    }
+    public void setTime(int seconds) {
+        this.seconds = seconds;
+    }
 }
