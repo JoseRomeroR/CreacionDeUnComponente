@@ -13,6 +13,10 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.util.Duration;
 
+/**
+ * Texfield temporizador 
+ * @author Kyle7
+ */
 public class Temporizador extends HBox {
 
     //private final int starTime = 10;
@@ -21,6 +25,10 @@ public class Temporizador extends HBox {
     private Label nameLabel;
     private Label typeLabel;
 
+    /**
+     * 
+     * @param seconds  segundos para el temporizador inicial
+     */
     public Temporizador(int seconds) {
         nameLabel = new Label();
         nameLabel.setText("Contador");
@@ -50,7 +58,11 @@ public class Temporizador extends HBox {
     }
 
     
-    // metodo para empezar la cuenta atras ( si no queremos esto descomentamos en el constructor doTime y lo volvemos privado este metodo para mas security)
+    /**
+     * metodo para empezar la cuenta atras
+     */
+    
+    // ( si no queremos esto descomentamos en el constructor doTime y lo volvemos privado este metodo para mas security)
     public void doTime() {
         Timeline time = new Timeline();
         time.setCycleCount(Timeline.INDEFINITE);
@@ -58,6 +70,7 @@ public class Temporizador extends HBox {
         if (time != null) {
             time.stop();
         }
+        
         KeyFrame frame = new KeyFrame(Duration.seconds(1), new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
@@ -76,14 +89,25 @@ public class Temporizador extends HBox {
 
     }
 
+    /**
+     * 
+     * @return int devuelve los segundos
+     */
     public int getTime(){
         return this.seconds;
     }
     
+    /**
+     * 
+     * @param seconds establece los segundos del contador
+     */
     public void setTime(int seconds) {
         this.seconds = seconds;
     }
     
+    /**
+     * Alerta de tiempo finalizado
+     */
     public void alertTime(){
           if (this.seconds== 0) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);

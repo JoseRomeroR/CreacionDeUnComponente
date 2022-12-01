@@ -13,8 +13,8 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 
 /**
- *
- * @author
+ *  Selector con dos botones y un label que controla el label
+ * @author Jose Romero
  */
 public class SelectorDeslizamiento extends AnchorPane {
 
@@ -50,15 +50,26 @@ public class SelectorDeslizamiento extends AnchorPane {
         });
     }
 
+    /**
+     *  
+     * @param items Controla los items del label
+     */
     public void setItems(ArrayList<String> items) {
         this.items = items;
         selectFirst();
     }
+    /**
+     * Atrasa en 1 la posicion de los items
+     */
 
     public void setPrevious() {
         updateItem(selectedIndex - 1);
     }
 
+    /**
+     * 
+     * Adelanta en 1 la posicion de los items
+     */
     public void setNext() {
         updateItem(selectedIndex + 1);
     }

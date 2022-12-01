@@ -17,6 +17,11 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 
+/**
+ * Componente que incluye un TextField y un botón
+ * @author Jose Romero
+ */
+
 public class CampoTextoBoton extends HBox implements Initializable {
 
     @FXML
@@ -36,26 +41,52 @@ public class CampoTextoBoton extends HBox implements Initializable {
         }
      
     }
+    
+ 
 
+/**
+ * 
+ * @return String  Devuelve el contenido del TextField
+ */
     public String getText() {
         return textProperty().get();
     }
 
+
+/**
+ * 
+ * @param value  String parar incluir en el TextField
+ */
     public void setText(String value) {
         textProperty().set(value);
     }
+    
+    /**
+     * 
+     * @return String Devuelve el contenido del textProperty
+     */
 
     public StringProperty textProperty() {
         return textField.textProperty();
     }
+    
+    /**
+     * 
+     * @return ObjectProperty onAction
+     */
 
     public final ObjectProperty<EventHandler<ActionEvent>> onActionProperty() {
         return onAction;
     }
-
+/**
+ * 
+ * @param value  ActionEvent valor del evento
+ */
     public final void setOnAction(EventHandler<ActionEvent> value) {
         onActionProperty().set(value);
     }
+    
+
     private ObjectProperty<EventHandler<ActionEvent>> onAction = new ObjectPropertyBase<EventHandler<ActionEvent>>() {
         @Override
         protected void invalidated() {
